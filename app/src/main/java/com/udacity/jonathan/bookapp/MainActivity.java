@@ -21,14 +21,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mDbHelper = new BookDbHelper(this);
+        displayDatabaseInfo();
+
     }
+
 
 
 
     private void displayDatabaseInfo() {
         // To access our database, we instantiate our subclass of SQLiteOpenHelper
         // and pass the context, which is the current activity.
-//        PetDbHelper mDbHelper = new BookDbHelper(this);
+//        BookDbHelper mDbHelper = new BookDbHelper(this);
 
         // Create and/or open a database to read from it
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -54,10 +58,12 @@ public class MainActivity extends AppCompatActivity {
         // Create a ContentValues object where column names are the keys,
         // and Toto's pet attributes are the values.
         ContentValues values = new ContentValues();
-        values.put(PetEntry.COLUMN_PET_NAME, "Toto");
-        values.put(PetEntry.COLUMN_PET_BREED, "Terrier");
-        values.put(PetEntry.COLUMN_PET_GENDER, PetEntry.GENDER_MALE);
-        values.put(PetEntry.COLUMN_PET_WEIGHT, 7);
+        values.put(BookEntry.COLUMN_BOOK_NAME, "Toto");
+        values.put(BookEntry.COLUMN_SUPPLIER_NAME, "Terrier");
+        values.put(BookEntry.COLUMN_SUPPLIER_PHONE, "4013390446");
+        values.put(BookEntry.COLUMN_BOOK_PRICE, 7);
+        values.put(BookEntry.COLUMN_BOOK_QUANTITY, 1);
+
 
         // Insert a new row for Toto in the database, returning the ID of that new row.
         // The first argument for db.insert() is the pets table name.
@@ -66,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         // this is set to "null", then the framework will not insert a row when
         // there are no values).
         // The third argument is the ContentValues object containing the info for Toto.
-        long newRowId = db.insert(PetEntry.TABLE_NAME, null, values);
+        long newRowId = db.insert(BookEntry.TABLE_NAME, null, values);
     }
 
     @Override
@@ -83,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_insert_dummy_data:
-                insertPet();
+                insertBook();
                 displayDatabaseInfo();
                 return true;
             // Respond to a click on the "Delete all entries" menu option
