@@ -9,7 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.udacity.jonathan.bookapp.data.BookDbHelper;
 
@@ -17,12 +20,20 @@ public class MainActivity extends AppCompatActivity {
 
     private BookDbHelper mDbHelper;
 
+    Button submitButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         mDbHelper = new BookDbHelper(this);
         displayDatabaseInfo();
+        submitButton = (Button) findViewById(R.id.submitData);
+        submitButton.setOnClickListener( submitButtonData );
+
+
 
     }
 
@@ -116,8 +127,8 @@ public class MainActivity extends AppCompatActivity {
         // Create a ContentValues object where column names are the keys,
         // and Toto's pet attributes are the values.
         ContentValues values = new ContentValues();
-        values.put(BookEntry.COLUMN_BOOK_NAME, "Toto");
-        values.put(BookEntry.COLUMN_SUPPLIER_NAME, "Terrier");
+        values.put(BookEntry.COLUMN_BOOK_NAME, "Harry Potter");
+        values.put(BookEntry.COLUMN_SUPPLIER_NAME, "Judith");
         values.put(BookEntry.COLUMN_SUPPLIER_PHONE, "4013390446");
         values.put(BookEntry.COLUMN_BOOK_PRICE, 7);
         values.put(BookEntry.COLUMN_BOOK_QUANTITY, 1);
@@ -157,6 +168,13 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    final View.OnClickListener submitButtonData = new View.OnClickListener() {
+        public void onClick(final View v){
+            insertBook();
+            displayDatabaseInfo();
+        }
+    };
 
 
 }
