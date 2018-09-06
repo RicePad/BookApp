@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 BookEntry.COLUMN_BOOK_PRICE,
                 BookEntry.COLUMN_BOOK_QUANTITY};
 
-        // Perform a query on the pets table
+        // Perform a query on the books table
         Cursor cursor = db.query(
                 BookEntry.TABLE_NAME,   // The table to query
                 projection,            // The columns to return
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 displayView.append(("\n" + currentID + " - " +
                         currentBookName + " - " +
                         currentSupplierName + " - " +
-                        currentSupplierPhone + " - " +
+                        currentSupplierPhone + " - $" +
                         currentPrice + " - " +
                         currentQuantity));
             }
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Insert a new row for Toto in the database, returning the ID of that new row.
-        // The first argument for db.insert() is the pets table name.
+        // The first argument for db.insert() is the books table name.
         // The second argument provides the name of a column in which the framework
         // can insert NULL in the event that the ContentValues is empty (if
         // this is set to "null", then the framework will not insert a row when
