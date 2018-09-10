@@ -1,10 +1,21 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
     tools:context=".MainActivity">
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
 
     <TextView
         android:id="@+id/text_view_book"
@@ -13,12 +24,13 @@
         android:padding="20dp"/>
 
 
-    <Button
-        android:id="@+id/submitData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="-126dp"
-        android:backgroundTint="#747b7c"
-        android:text="SUBMIT" />
-
-</LinearLayout>
+    <!--<Button-->
+        <!--android:id="@+id/submitData"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="-126dp"-->
+        <!--android:backgroundTint="#747b7c"-->
+        <!--android:text="SUBMIT" />-->
+        <!---->
+    </RelativeLayout>>
+</RelativeLayout>
