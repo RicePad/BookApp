@@ -49,17 +49,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mCursorAdapter = new BookCursorAdapter(this, null);
         bookListView.setAdapter(mCursorAdapter);
 
+        // Kick off the loader
+        getLoaderManager().initLoader(BOOK_LOADER, null, this);
 
 
 
-        submitButton = (Button) findViewById(R.id.submitData);
-        submitButton.setOnClickListener( submitButtonData );
+
+//        submitButton = (Button) findViewById(R.id.submitData);
+//        submitButton.setOnClickListener( submitButtonData );
 
     }
 
 
     public void insertBook(){
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         // Create a ContentValues object where column names are the keys,
         // and book attributes are the values.
@@ -69,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         values.put(BookEntry.COLUMN_SUPPLIER_PHONE, "4013390446");
         values.put(BookEntry.COLUMN_BOOK_PRICE, 7);
         values.put(BookEntry.COLUMN_BOOK_QUANTITY, 1);
-
 
         // The third argument is the ContentValues object containing the info for books.
         Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);    }
