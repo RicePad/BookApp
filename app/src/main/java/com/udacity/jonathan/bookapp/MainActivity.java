@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,8 +26,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private BookDbHelper mDbHelper;
 
-    Button submitButton;
-
     private static final int BOOK_LOADER = 0;
 
     BookCursorAdapter mCursorAdapter;
@@ -37,26 +36,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
 
 
-        // Find the ListView which will be populated with the pet data
+        // Find the ListView which will be populated with the book data
         ListView bookListView = (ListView) findViewById(R.id.list);
 
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
         View emptyView = findViewById(R.id.empty_view);
         bookListView.setEmptyView(emptyView);
 
-        // Setup an Adapter to create a list item for each row of pet data in the Cursor.
-        // There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
+        // Setup an Adapter to create a list item for each row of book data in the Cursor.
+        // There is no book data yet (until the loader finishes) so pass in null for the Cursor.
         mCursorAdapter = new BookCursorAdapter(this, null);
         bookListView.setAdapter(mCursorAdapter);
 
         // Kick off the loader
         getLoaderManager().initLoader(BOOK_LOADER, null, this);
 
-
-
-
-//        submitButton = (Button) findViewById(R.id.submitData);
-//        submitButton.setOnClickListener( submitButtonData );
 
     }
 
@@ -74,6 +68,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // The third argument is the ContentValues object containing the info for books.
         Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, values);    }
+
+    /**
+     * Helper method to delete all books in the database.
+     */
+    private void deleteAllBooks() {
+        int rowsDeleted = getContentResolver().delete(BookEntry.CONTENT_URI, null, null);
+        Log.v("MainActivity", rowsDeleted + " rows deleted from book database");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -93,7 +95,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
-                // Do nothing for now
+                // Delete all books
+                deleteAllBooks();
                 return true;
         }
         return super.onOptionsItemSelected(item);

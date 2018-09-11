@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">BookApp</string>
+    <string name="book_name">Book Title </string>
+    <string name="supplier_name">Supplier Name</string>
+    <string name="supplier_phone">Supplier Phone</string>
+
+    <string name="quantity">Quantity of Books</string>
+    <string name="price">Price $</string>
+    <string name="editor_activity_title_new_book">Add a book</string>
+    <string name="editor_activity_title_edit_book">Edit book</string>
+    <string name="editor_insert_book_successful">Book Saved</string>
+    <string name="editor_insert_book_failed">Error Saving Book</string>
+    <string name="editor_update_book_successful">Book updated</string>
+    <string name="editor_update_book_failed">Error updating Book</string>
+    <string name="unsaved_changes_dialog_msg">There are unsaved changes in the product information. Do you want to continue?</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">Keep editing</string>
+    <string name="delete_dialog_msg">Delete this book?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="editor_delete_book_failed">Error with deleting book</string>
+    <string name="editor_delete_book_successful">Book deleted</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </resources>
+
