@@ -3,14 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
-
     <item
         android:id="@+id/action_insert_dummy_data"
-        android:title="insert test data"
+        android:title="Insert TestBook"
         app:showAsAction="never" />
-
     <item
         android:id="@+id/action_delete_all_entries"
-        android:title="delet all"
+        android:title="Delete Inventory"
         app:showAsAction="never" />
 </menu>

@@ -3,7 +3,6 @@
     <string name="book_name">Book Title </string>
     <string name="supplier_name">Supplier Name</string>
     <string name="supplier_phone">Supplier Phone</string>
-
     <string name="quantity">Quantity of Books</string>
     <string name="price">Price $</string>
     <string name="editor_activity_title_new_book">Add a book</string>
@@ -22,19 +21,5 @@
     <string name="editor_delete_book_successful">Book deleted</string>
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </resources>
 
