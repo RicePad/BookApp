@@ -64,14 +64,12 @@ public class EditorActivity extends AppCompatActivity implements
     private EditText mBookPriceEditText;
 
     /**
-     * EditText field to enter the book's quantity
+     * TextView field to enter the book's quantity
      */
     private TextView mBookQuantityEditText;
     private int bookQuantity;
     ImageView mDecrementBook;
     ImageView mIncrementBook;
-
-
 
     /**
      * Boolean flag that keeps track of whether the book has been edited (true) or not (false)
