@@ -28,8 +28,6 @@ import android.widget.Toast;
 
 import com.udacity.jonathan.bookapp.data.BookContract.BookEntry;
 
-
-
 public class EditorActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -67,9 +65,31 @@ public class EditorActivity extends AppCompatActivity implements
      * TextView field to enter the book's quantity
      */
     private TextView mBookQuantityEditText;
+
+    /**
+     * Counter integer for book quantity
+     */
     private int bookQuantity;
-    ImageView mDecrementBook;
-    ImageView mIncrementBook;
+
+    /**
+     * Image field to enter the book's quantity
+     */
+    private ImageView mDecrementBook;
+
+    /**
+     * Image field to enter the book's quantity
+     */
+    private ImageView mIncrementBook;
+
+    /**
+     * Image field to enter email intent to seek help
+     */
+
+    private ImageView mHelpImage;
+
+    private String emailSuppplier;
+
+
 
     /**
      * Boolean flag that keeps track of whether the book has been edited (true) or not (false)
@@ -102,6 +122,9 @@ public class EditorActivity extends AppCompatActivity implements
         mBookQuantityEditText = (TextView) findViewById(R.id.quantity_text_view);
         mDecrementBook = (ImageView) findViewById(R.id.decrement_book);
         mIncrementBook = (ImageView) findViewById(R.id.increment_book);
+        mHelpImage = (ImageView) findViewById(R.id.help_intent);
+
+
 
         // Examine the intent that was used to launch this activity,
         // in order to figure out if we're creating a new book or editing an existing one.
@@ -155,6 +178,18 @@ public class EditorActivity extends AppCompatActivity implements
             public void onClick(View v) {
                     bookQuantity++;
                     displayBooksQuantity(bookQuantity);
+            }
+        });
+
+        mHelpImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+                intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject_for_email));
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
 

@@ -21,5 +21,7 @@
     <string name="editor_delete_book_successful">Book deleted</string>
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
+    <!-- Text for subject prefix [CHAR LIMIT=50] -->
+    <string name="subject_for_email">Book order for :&#160;</string>
 </resources>
 

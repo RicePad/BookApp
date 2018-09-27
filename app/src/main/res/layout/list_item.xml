@@ -22,7 +22,9 @@
             android:layout_weight="1"
             android:paddingLeft="14dp"
             android:text="Book name"
-            android:textSize="28sp" />
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#f94a51"/>
         <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -33,7 +35,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:paddingLeft="14dp"
-                android:text="Quantity:"
+                android:text="Quant:"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textSize="16sp"
                 android:gravity="bottom"/>
@@ -45,16 +47,36 @@
                 android:text="$200"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textSize="16sp"
-                android:gravity="bottom"/>
+                android:gravity="bottom" />
+            <ImageView
+                android:id="@+id/sale"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:layout_gravity="bottom"
+                android:src="@drawable/cart"
+                android:focusableInTouchMode="false"
+                android:text="Sale Button"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="end|center_vertical"
+                android:text="$"
+                android:textSize="35sp"
+                android:textColor="#1db954"
+                android:layout_marginLeft="25dp"/>
             <TextView
                 android:id="@+id/price"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:gravity="end|center_vertical"
                 android:text="30"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="40sp"/>
+                android:textSize="40sp"
+                android:textColor="#1db954"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
