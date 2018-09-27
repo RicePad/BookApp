@@ -68,13 +68,13 @@
             android:weightSum="8">
 
             <ImageView
-                android:id="@+id/decrement_stock"
+                android:id="@+id/decrement_book"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/decrement" />
             <TextView
-                android:id="@+id/product_quantity_text_view"
+                android:id="@+id/quantity_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
@@ -85,7 +85,7 @@
                 android:textColor="#000000" />
 
             <ImageView
-                android:id="@+id/increment_stock"
+                android:id="@+id/increment_book"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

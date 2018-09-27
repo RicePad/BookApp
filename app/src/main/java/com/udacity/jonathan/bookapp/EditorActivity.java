@@ -20,7 +20,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -64,7 +66,11 @@ public class EditorActivity extends AppCompatActivity implements
     /**
      * EditText field to enter the book's quantity
      */
-    private EditText mBookQuantityEditText;
+    private TextView mBookQuantityEditText;
+    private int bookQuantity;
+    ImageView mDecrementBook;
+    ImageView mIncrementBook;
+
 
 
     /**
@@ -89,6 +95,16 @@ public class EditorActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
 
+
+        // Find all relevant views that we will need to read user input from
+        mBookTitleEditText = (EditText) findViewById(R.id.book_name_edit);
+        mSupplierNameEditText = (EditText) findViewById(R.id.supplier_name_edit);
+        mSupplierPhoneEditText = (EditText) findViewById(R.id.supplier_phone_edit);
+        mBookPriceEditText = (EditText) findViewById(R.id.book_price_edit);
+        mBookQuantityEditText = (TextView) findViewById(R.id.quantity_text_view);
+        mDecrementBook = (ImageView) findViewById(R.id.decrement_book);
+        mIncrementBook = (ImageView) findViewById(R.id.increment_book);
+
         // Examine the intent that was used to launch this activity,
         // in order to figure out if we're creating a new book or editing an existing one.
         Intent intent = getIntent();
@@ -99,6 +115,9 @@ public class EditorActivity extends AppCompatActivity implements
         if (mCurrentBookUri == null) {
             // This is a new book, so change the app bar to say "Add a Book"
             setTitle(getString(R.string.editor_activity_title_new_book));
+            bookQuantity = 0;
+            mBookQuantityEditText.setText(String.valueOf(bookQuantity));
+
 
             // Invalidate the options menu, so the "Delete" menu option can be hidden.
             // (It doesn't make sense to delete a book that hasn't been created yet.)
@@ -112,13 +131,6 @@ public class EditorActivity extends AppCompatActivity implements
             getLoaderManager().initLoader(EXISTING_BOOK_LOADER, null, this);
         }
 
-        // Find all relevant views that we will need to read user input from
-        mBookTitleEditText = (EditText) findViewById(R.id.book_name_edit);
-        mSupplierNameEditText = (EditText) findViewById(R.id.supplier_name_edit);
-        mSupplierPhoneEditText = (EditText) findViewById(R.id.supplier_phone_edit);
-        mBookPriceEditText = (EditText) findViewById(R.id.book_price_edit);
-        mBookQuantityEditText = (EditText) findViewById(R.id.quantity_edit);
-
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
         // or not, if the user tries to leave the editor without saving.
@@ -127,10 +139,37 @@ public class EditorActivity extends AppCompatActivity implements
         mSupplierPhoneEditText.setOnTouchListener(mTouchListener);
         mBookQuantityEditText.setOnTouchListener(mTouchListener);
         mBookPriceEditText.setOnTouchListener(mTouchListener);
+        mDecrementBook.setOnTouchListener(mTouchListener);
+        mIncrementBook.setOnTouchListener(mTouchListener);
 
+        mDecrementBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bookQuantity > 0) {
+                    bookQuantity--;
+                    displayBooksQuantity(bookQuantity);
+                }
+            }
+        });
+
+        mIncrementBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    bookQuantity++;
+                    displayBooksQuantity(bookQuantity);
+            }
+        });
 
     }
 
+
+    /**
+     * This method displays the given quantity value on the screen.
+     */
+    private void displayBooksQuantity(int currentStock) {
+        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+        quantityTextView.setText(String.valueOf(currentStock));
+    }
 
 
     /**
@@ -339,8 +378,9 @@ public class EditorActivity extends AppCompatActivity implements
             int bookTitlenameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_NAME);
             int supplierNameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_SUPPLIER_PHONE);
             int supplierPhoneColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_SUPPLIER_PHONE);
-            int quantityColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_QUANTITY);
             int priceColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_PRICE);
+            int quantityColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_QUANTITY);
+
 
 
             // Read the book attributes from the Cursor for the current book
@@ -348,14 +388,14 @@ public class EditorActivity extends AppCompatActivity implements
             String supplierName = cursor.getString(supplierNameColumnIndex);
             String supplierPhone = cursor.getString(supplierPhoneColumnIndex);
             String bookPrice = cursor.getString(priceColumnIndex);
-            String bookQuantity = cursor.getString(quantityColumnIndex);
+            bookQuantity = cursor.getInt(quantityColumnIndex);
 
             // Update the TextViews with the attributes for the current book
             mBookTitleEditText.setText(bookName);
             mSupplierNameEditText.setText(supplierName);
             mSupplierPhoneEditText.setText(supplierPhone);
             mBookPriceEditText.setText(bookPrice);
-            mBookQuantityEditText.setText(bookQuantity);
+            mBookQuantityEditText.setText(Integer.toString(bookQuantity));
 
         }
     }
