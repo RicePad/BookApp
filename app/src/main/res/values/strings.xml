@@ -23,5 +23,17 @@
     <string name="action_delete">Delete</string>
     <!-- Text for subject prefix [CHAR LIMIT=50] -->
     <string name="subject_for_email">Book order for :&#160;</string>
+    <string name="book_requires_title">Book requires a title !</string>
+    <string name="book_requires_supplier_name">Book requires a supplier name !</string>
+    <string name="book_requires_supplier_phone">Book requires a supplier number!</string>
+    <string name="book_requires_price">Book requires a price!</string>
+    <string name="book_requires_price_positive">Book requires a positive price!</string>
+    <string name="book_requires_quantity_positive">Book requires a positive quantity!</string>
+
+
+
+
+
+
 </resources>
 

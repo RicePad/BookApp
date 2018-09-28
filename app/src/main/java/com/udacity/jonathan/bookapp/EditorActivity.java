@@ -89,6 +89,9 @@ public class EditorActivity extends AppCompatActivity implements
 
     private String emailSuppplier;
 
+    private boolean bookDataValidation = true;
+
+
 
 
     /**
@@ -232,11 +235,67 @@ public class EditorActivity extends AppCompatActivity implements
         // Create a ContentValues object where column names are the keys,
         // and book attributes from the editor are the values.
         ContentValues values = new ContentValues();
-        values.put(BookEntry.COLUMN_BOOK_NAME, bookTitleNameString);
-        values.put(BookEntry.COLUMN_SUPPLIER_NAME, supplierNameString);
-        values.put(BookEntry.COLUMN_SUPPLIER_PHONE, supplierPhoneString);
-        values.put(BookEntry.COLUMN_BOOK_PRICE, bookPriceString);
-        values.put(BookEntry.COLUMN_BOOK_QUANTITY, bookQuantityString);
+
+        // Check  the book has a name validation.
+        if (!bookTitleNameString.isEmpty()) {
+            values.put(BookEntry.COLUMN_BOOK_NAME, bookTitleNameString);
+        }
+        else {
+            Toast.makeText(this, getString(R.string.book_requires_title),
+                    Toast.LENGTH_SHORT).show();
+            bookDataValidation = false;
+            return;
+        }
+
+        // Check that the name of the supplier of the book is provided.
+        if (!supplierNameString.isEmpty()) {
+            values.put(BookEntry.COLUMN_SUPPLIER_NAME, supplierNameString);
+        }
+        else {
+            Toast.makeText(this, getString(R.string.book_requires_supplier_name),
+                    Toast.LENGTH_SHORT).show();
+            bookDataValidation = false;
+            return;
+        }
+
+        // Check that the phone of the supplier of the book is provided.
+        if (!supplierPhoneString.isEmpty()) {
+            values.put(BookEntry.COLUMN_SUPPLIER_PHONE, supplierPhoneString);
+        }
+        else {
+            Toast.makeText(this, getString(R.string.book_requires_supplier_phone),
+                    Toast.LENGTH_SHORT).show();
+            bookDataValidation = false;
+            return;
+        }
+
+        // Check that the book has a valid price.
+        if (!bookPriceString.isEmpty() && Integer.parseInt(bookPriceString) > 0) {
+            values.put(BookEntry.COLUMN_BOOK_PRICE, bookPriceString);
+        }
+        else if (bookPriceString.length() == 0){
+            Toast.makeText(this, getString(R.string.book_requires_price),
+                    Toast.LENGTH_SHORT).show();
+            bookDataValidation = false;
+            return;
+        } else if (Integer.parseInt(bookPriceString) == 0) {
+            Toast.makeText(this, getString(R.string.book_requires_price_positive),
+                    Toast.LENGTH_SHORT).show();
+            bookDataValidation = false;
+            return;
+        }
+
+        // Check that the book has a valid quantity.
+        if (bookQuantity > 0) {
+            values.put(BookEntry.COLUMN_BOOK_QUANTITY, bookQuantityString);
+        }
+        else {
+            Toast.makeText(this, getString(R.string.book_requires_quantity_positive),
+                    Toast.LENGTH_SHORT).show();
+            bookDataValidation = false;
+            return;
+        }
+
 
 
         // If the weight is not provided by the user, don't try to parse the string into an
