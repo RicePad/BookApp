@@ -29,6 +29,10 @@
     <string name="book_requires_price">Book requires a price!</string>
     <string name="book_requires_price_positive">Book requires a positive price!</string>
     <string name="book_requires_quantity_positive">Book requires a positive quantity!</string>
+    <string name="book_sell_failed">Error Selling Book!</string>
+    <string name="book_sell_successful">You successfully sold a book!</string>
+    <string name="book_sell_stock_empty">Book out of stock!</string>
+
 
 
 
